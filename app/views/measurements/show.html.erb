@@ -1,0 +1,54 @@
+<h1> ID:<%= @measurement.id %> </h1>
+
+<hr>
+<h2>Map</h2>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+</script>
+
+<hr>
+<h2>Graph</h2>
+<%= high_chart("sample", @h) %>
+
+
+<hr>
+<h2>Datas</h2>
+<ul>
+<% if @measurement.records.any? %>
+<% @measurement.records.each do |data| %>
+<li>depth: <%= data.depth %>, latitude: <%= data.latitude %>, longitude: <%= data.longitude %></li>
+<% end %>
+<% else %>
+<li>No data yet.</li>
+<% end %>
+</ul>
+
+<h2>Add data</h2>
+<%= form_for [@measurement, @measurement.records.build], :url => measurement_records_path(@measurement.id) do |f| %>
+<div class="field">
+  <%= f.label :depth %>
+  <%= f.text_field :depth %>
+</div>
+<div class="field">
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude %>
+</div>
+<div class="field">
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
+
+<%= link_to '戻る' , measurements_path %>

@@ -1,0 +1,9 @@
+class RecordsController < ApplicationController
+
+  def create
+    @measurement = Measurement.find(params[:id])
+    @record = Measurement.find(params[:id]).records.create(params[:record].permit(:depth, :latitude, :longitude))
+    redirect_to measurement_path(@measurement)
+  end
+
+end
