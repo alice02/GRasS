@@ -22,33 +22,20 @@
 
 <hr>
 <h2>Datas</h2>
-<ul>
 <% if @measurement.records.any? %>
-<% @measurement.records.each do |data| %>
-<li>depth: <%= data.depth %>, latitude: <%= data.latitude %>, longitude: <%= data.longitude %></li>
-<% end %>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr><th>ID</th><th>Depth</th><th>Latitude</th><th>Longitude</th></tr>
+    </thead>
+    <tbody>
+    <% @measurement.records.each do |r| %>
+    <tr><td><%= r.id %></td>
+      <td><%= r.depth %></td>
+      <td><%= r.latitude %></td>
+      <td><%= r.longitude %></td>
+    </tr>
+    <% end %>
+    </tbody>
 <% else %>
-<li>No data yet.</li>
+  <h4>No data yet.</h4>
 <% end %>
-</ul>
-
-<h2>Add data</h2>
-<%= form_for [@measurement, @measurement.records.build], :url => measurement_records_path(@measurement.id) do |f| %>
-<div class="field">
-  <%= f.label :depth %>
-  <%= f.text_field :depth %>
-</div>
-<div class="field">
-  <%= f.label :latitude %>
-  <%= f.text_field :latitude %>
-</div>
-<div class="field">
-  <%= f.label :longitude %>
-  <%= f.text_field :longitude %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
-
-<%= link_to '戻る' , measurements_path %>

@@ -1,0 +1,11 @@
+require "rubygems"
+require "active_record"
+
+ActiveRecord::Base.establish_connection(
+  adapter: "sqlite3",
+  dbfile: "db/development.sqlite3"
+)
+
+
+@p = Measurement.new(:depth => "12.2", :latitude => "35.394", :longitude => "135.837", :measurement_id => "17")
+p.save
