@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 gem 'lazy_high_charts'
 gem 'gmaps4rails'
 gem 'twitter-bootstrap-rails-confirm'
+gem 'simple_form'

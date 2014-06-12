@@ -1,13 +1,9 @@
 <h1>新しい計測を開始します</h1>
-<h2>コメントを入力してください(任意)</h2>
-<%= form_for(@measurement) do |f| %>
-<div class="field">
-        <%= f.label :comment %>
-        <%= f.text_area :comment %>
-</div>
+<h2>何かコメントがあれば入力してください(任意)</h2>
 
-<div class="actions">
-        <%= f.submit %>
-</div>
+<%= simple_form_for(@measurement) do |f| %>
+  <%= f.input :comment %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
 <% end %>
-
