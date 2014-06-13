@@ -34,13 +34,19 @@ class MeasurementsController < ApplicationController
 
   def new
     @measurement = Measurement.new
+    @management = Management.find(1)
   end
 
 
   def create
     @measurement = Measurement.new(params[:measurement].permit(:comment))
-    if @measurement.save
+    @management = Management.find(1)
+    if @management.state == true
+      redirect_to managements_path, notice: '他で計測中です！'
+    elsif @measurement.save
       redirect_to measurements_path, notice: '計測を開始しました！'
+      @management.state = true
+      @management.save
     else
       render action 'new'
     end

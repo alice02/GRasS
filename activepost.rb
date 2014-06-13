@@ -12,11 +12,12 @@ end
 class Record < ActiveRecord::Base
 end
 
+id = 1
 
 for i in 1..50 do
   num = rand * 100
   print num, "\n"
-  p = Record.new(:depth => num, :latitude => "35.394", :longitude => "135.837", :measurement_id => "23")
+  p = Record.new(:depth => num, :latitude => "35.394", :longitude => "135.837", :measurement_id => id)
   p.save
   sleep(1)
 end

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611103948) do
+ActiveRecord::Schema.define(version: 20140613031532) do
+
+  create_table "managements", force: true do |t|
+    t.boolean  "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "measurements", force: true do |t|
     t.text     "comment"
