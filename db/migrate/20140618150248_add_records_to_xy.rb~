@@ -1,0 +1,6 @@
+class AddRecordsToXy < ActiveRecord::Migration
+  def change
+    add_column :xies, :x, :float
+    add_column :xies, :y, :float
+  end
+end

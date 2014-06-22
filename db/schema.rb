@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613031532) do
+ActiveRecord::Schema.define(version: 20140618150248) do
+
+  create_table "Records", force: true do |t|
+    t.float    "depth"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "measurement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "x"
+    t.float    "y"
+  end
+
+  add_index "records", ["measurement_id"], name: "index_records_on_measurement_id", using: :btree
 
   create_table "managements", force: true do |t|
     t.boolean  "state"
@@ -24,16 +37,5 @@ ActiveRecord::Schema.define(version: 20140613031532) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "records", force: true do |t|
-    t.float    "depth"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "measurement_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "records", ["measurement_id"], name: "index_records_on_measurement_id"
 
 end
