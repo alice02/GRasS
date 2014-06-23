@@ -3,13 +3,16 @@ require "active_record"
 
 ActiveRecord::Base.establish_connection(
   adapter: "sqlite3",
-  database: "db/development.sqlite3"
+  database: "db/development.sqlite3",
 )
 
 class Measurement < ActiveRecord::Base
 end
 
 class Record < ActiveRecord::Base
+end
+
+class Management < ActiveRecord::Base
 end
 
 
@@ -92,14 +95,17 @@ end
 
 srand(12)
 
-id = 1
 
-for i in 1..50 do
+@management = Management.find(1)
+
+id = @management.measurementid
+
+for i in 1..100 do
   num = rand * 100
   lat = 360000.0 + rand*100
   long = 1395000.0 + rand*100
   x, y = latlong2xy(lat, long, 0)
   p = Record.new(:depth => num, :latitude => lat, :longitude => long, :x => x, :y => y, :measurement_id => id)
   p.save
-  sleep(0.5)
+#  sleep(0.5)
 end

@@ -11,9 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618150248) do
+ActiveRecord::Schema.define(version: 20140623054115) do
 
-  create_table "Records", force: true do |t|
+  create_table "managements", force: true do |t|
+    t.boolean  "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "measurementid"
+  end
+
+  create_table "measurements", force: true do |t|
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "records", force: true do |t|
     t.float    "depth"
     t.float    "latitude"
     t.float    "longitude"
@@ -24,18 +37,6 @@ ActiveRecord::Schema.define(version: 20140618150248) do
     t.float    "y"
   end
 
-  add_index "records", ["measurement_id"], name: "index_records_on_measurement_id", using: :btree
-
-  create_table "managements", force: true do |t|
-    t.boolean  "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "measurements", force: true do |t|
-    t.text     "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "records", ["measurement_id"], name: "index_records_on_measurement_id"
 
 end

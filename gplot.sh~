@@ -1,0 +1,6 @@
+gnuplot << EOF
+  set terminal png
+  set output 'public/images/graph.png'
+  unset key
+  splot 'out.dat' w pm3d
+EOF

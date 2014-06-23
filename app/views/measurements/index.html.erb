@@ -7,9 +7,9 @@
     <tr><td width="50" align="center"><%= m.id %></td>
       <td><%= m.comment %></td>
       <td width="250"><%= m.created_at %></td>
-      <td width="180" align="center">
+      <td width="230" align="center">
 	<div class="btn-group">
-	<%= link_to 'Show', measurement_path(m.id), class: "btn btn-info" %><%= link_to 'Edit', "#", class: "btn btn-success" %><%= link_to 'Destroy', m, :data => {:confirm => "削除してもよろしいですか？"}, :class => "btn btn-danger", :method => :delete  %>
+	<%= link_to 'Show', measurement_path(m.id), class: "btn btn-info" %><%= link_to 'Edit', edit_measurement_path(m.id), class: "btn btn-success" %><%= link_to 'Destroy', m, :data => {:confirm => "削除してもよろしいですか？"}, :class => "btn btn-danger", :method => :delete  %>
 	</div>
       </td>
     </tr>

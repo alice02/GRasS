@@ -1,7 +1,8 @@
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="/assets/SurfacePlot.js"></script>
+<!---
 <script type="text/javascript" src="/my_splot.js"></script>
-      
+--->      
     
 
 <h1> Measurement ID: <%= @measurement.id %> </h1>
@@ -10,7 +11,6 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#Gnuplot" data-toggle="tab">Gnuplot Graph</a></li>
   <li><a href="#3DGraph" data-toggle="tab">3D Graph</a></li>
-  <li><a href="#Graph" data-toggle="tab">Graph</a></li>
   <li><a href="#Data" data-toggle="tab">Data</a></li>
 </ul>
 
@@ -22,11 +22,9 @@
     </div>        
     --->
   </div>
-  <div class="tab-pane active" id="Gnuplot">
-    <%= image_tag '/images/graph-sample.png' %>
-  </div>
 
-  <div class="tab-pane active" id="Graph">
+  <div class="tab-pane active" id="Gnuplot">
+    <%= image_tag "/images/graph-#{@measurement.id}.png" %>
   </div>
 
   <div class="tab-pane" id="Data">

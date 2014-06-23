@@ -1,0 +1,8 @@
+<h2>何かコメントがあれば入力してください(任意)</h2>
+
+<%= simple_form_for(@measurement) do |f| %>
+  <%= f.input :comment %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>
