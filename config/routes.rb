@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
   resources :infos, only: :index
 
+  get 'export_csv', to: 'measurements#export_csv', path: "/measurements/:id/export_csv"
+
   # Example resource route with options:
   #   resources :products do
   #     member do

@@ -1,29 +1,26 @@
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript" src="/assets/SurfacePlot.js"></script>
-<!---
-<script type="text/javascript" src="/my_splot.js"></script>
---->      
-    
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9 pull-center">
+      <div class="alert alert-info">
+	<h1> <span class="label label-info">Measurement ID</span> <%= @measurement.id %> </h1>
+	<h3> <span class="label label-info">Comment</span> <%= @measurement.comment %></h3>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1> Measurement ID: <%= @measurement.id %> </h1>
-
+<div align="right">
+<%= link_to  'Export CSV', export_csv_path, method: "GET", class: "btn btn-primary" %>
+</div>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#Gnuplot" data-toggle="tab">Gnuplot Graph</a></li>
-  <li><a href="#3DGraph" data-toggle="tab">3D Graph</a></li>
+  <li class="active"><a href="#Graph" data-toggle="tab">Graph</a></li>
   <li><a href="#Data" data-toggle="tab">Data</a></li>
 </ul>
 
 
 <div class="tab-content">
-  <div class="tab-pane active" id="3DGraph">
-    <!-- SurfacePlot goes here...
-    <div id='surfacePlotDiv' align="left">
-    </div>        
-    --->
-  </div>
-
-  <div class="tab-pane active" id="Gnuplot">
+  <div class="tab-pane active" id="Graph">
     <%= image_tag "/images/graph-#{@measurement.id}.png" %>
   </div>
 

@@ -1,15 +1,32 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9 pull-center">
+      <div class="alert alert-info">
+      <% if @management.state == true %>
+      <h2><span class="label label-info">Status</span> %nbsp;計測中</h2>
+      <% else %>
+      <h2><span class="label label-info">Status</span> &nbsp;待機中</h2>
+      <p>※ 計測中は他のデータを操作することはできなくなります．</p>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr><th>ID</th><th>Comment</th><th>Create Time</th><th>Action</th></tr>
   </thead>
   <tbody>
     <% @measurements.each do |m| %>
-    <tr><td width="50" align="center"><%= m.id %></td>
+    <tr class="<%= 'danger' if m.id == @management.measurementid - 1 and @management.state == true %>"><td width="50" align="center"><%= m.id %></td>
       <td><%= m.comment %></td>
       <td width="250"><%= m.created_at %></td>
       <td width="230" align="center">
 	<div class="btn-group">
-	<%= link_to 'Show', measurement_path(m.id), class: "btn btn-info" %><%= link_to 'Edit', edit_measurement_path(m.id), class: "btn btn-success" %><%= link_to 'Destroy', m, :data => {:confirm => "削除してもよろしいですか？"}, :class => "btn btn-danger", :method => :delete  %>
+	  <%= link_to 'Show', measurement_path(m.id), class: "btn btn-info" %><%= link_to 'Edit', edit_measurement_path(m.id), class: "btn btn-success" %><%= link_to 'Destroy', m, :data => {:confirm => "削除してもよろしいですか？
+注意：削除に時間がかかる場合があります．ブラウザを閉じないでお待ちください．"}, :class => "btn btn-danger", :method => :delete  %>
 	</div>
       </td>
     </tr>

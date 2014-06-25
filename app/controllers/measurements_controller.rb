@@ -3,6 +3,7 @@ class MeasurementsController < ApplicationController
 
   def index
     @measurements = Measurement.all
+    @management = Management.find(1)
   end
 
 
@@ -11,19 +12,27 @@ class MeasurementsController < ApplicationController
     @records = @measurement.records
 
     if @records.any?
-      # アルゴリズム要検討
       File.open("public/out.dat", "w") do |io|
-        for i in 0..9 do
-          for j in 0..9 do
-            io.print "#{i} #{j} #{@records[10*i+j].depth}\n" 
-          end
-          io.print "\n"
+        @records.each do |r|
+          io.print "#{r.x} #{r.y} #{r.depth}\n" 
         end
       end
       # gnuplotでグラフ作成実行
       `./gplot.sh #{params[:id]}`
     end
+  end
 
+
+  def export_csv
+    @measurement = Measurement.find(params[:id])
+    @records = @measurement.records
+    data = CSV.generate do |csv|
+      csv << ["depth", "x", "y"]
+      @records.each do |r|
+        csv << [r.depth, r.x, r.y]
+      end
+    end
+    send_data(data, type: 'text/csv', filename: "Record_#{@measurement.id}_#{Time.now.strftime('%Y%m%d%H%M%S')}")
   end
 
 
@@ -51,6 +60,7 @@ class MeasurementsController < ApplicationController
   def edit
     @measurement = Measurement.find(params[:id])
   end
+
 
   def update
     @measurement = Measurement.find(params[:id])

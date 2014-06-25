@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Management.create(:state => false, :measurementid => 0)
+Management.create(:state => false, :measurementid => 1)
