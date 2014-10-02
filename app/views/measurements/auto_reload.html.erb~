@@ -1,0 +1,5 @@
+<h1>Auto Reload Graph</h1>
+
+<meta name="refresh" content="30">
+
+<%= high_chart("sample", @graph) %>

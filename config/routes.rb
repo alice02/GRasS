@@ -16,8 +16,14 @@ Rails.application.routes.draw do
     resources :records, only: :create
   end
   resources :infos, only: :index
+  resources :managements#, only: :edit
+
 
   get 'export_csv', to: 'measurements#export_csv', path: "/measurements/:id/export_csv"
+
+  get 'auto_reload', to: 'measurements#auto_reload', path: "/measurements/:id/auto_reload"
+
+  get 'reset_db', to: 'managements#reset_db', path: "/managements/:id/reset_db"
 
   # Example resource route with options:
   #   resources :products do

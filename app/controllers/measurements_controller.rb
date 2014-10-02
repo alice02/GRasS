@@ -12,13 +12,13 @@ class MeasurementsController < ApplicationController
     @records = @measurement.records
 
     if @records.any?
-      File.open("public/out.dat", "w") do |io|
+      File.open("/home/pi/gomihiroi/grass/public/out.dat", "w") do |io|
         @records.each do |r|
-          io.print "#{r.x} #{r.y} #{r.depth}\n" 
+          io.print "#{r.x} #{r.y} -#{r.depth}\n" 
         end
       end
       # gnuplotでグラフ作成実行
-      `./gplot.sh #{params[:id]}`
+      `/home/pi/gomihiroi/grass/gplot.sh #{params[:id]}`
     end
   end
 
@@ -27,12 +27,32 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.find(params[:id])
     @records = @measurement.records
     data = CSV.generate do |csv|
-      csv << ["depth", "x", "y"]
+      csv << ["id", "depth", "x", "y", "latitude", "longitude"]
       @records.each do |r|
-        csv << [r.depth, r.x, r.y]
+#        csv << [r.id, r.depth, r.x, r.y, r.latitude, r.longitude]
+        csv << [r.latitude, r.longitude]
       end
     end
     send_data(data, type: 'text/csv', filename: "Record_#{@measurement.id}_#{Time.now.strftime('%Y%m%d%H%M%S')}")
+  end
+
+
+  def auto_reload
+    @measurements = Measurement.find(params[:id]).records.order("id DESC").limit(50)
+    r_id = []
+    depth = []
+    @measurements.each do |m|
+      r_id.push(m.id)
+      depth.push(-1*m.depth)
+    end
+
+
+    @graph = LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart(:type => "area")
+#      f.title(text: 'ItemXXXの在庫の推移')
+      f.xAxis(categories: r_id)
+      f.series(name: 'depth', data: depth)
+    end
   end
 
 

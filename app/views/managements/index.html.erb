@@ -1,7 +1,0 @@
-<% if @management.state == false %>
-<%= link_to '新しい計測を開始する', new_measurement_path, :class => "btn btn-primary btn-lg"%>
-<%= link_to '計測を終了する', management_path(1), :method => "delete", :class => "btn btn-danger btn-lg disabled"%>
-<% else %>
-<%= link_to '新しい計測を開始する', new_measurement_path, :class => "btn btn-primary btn-lg disabled"%>
-<%= link_to '計測を終了する', management_path(1), :method => "delete", :class => "btn btn-danger btn-lg"%>
-<% end %>

@@ -1,0 +1,12 @@
+<h1>Auto Reload Graph</h1>
+
+<SCRIPT Language="JavaScript">
+function Rld()
+{
+location.reload();
+}
+setTimeout("Rld()",10000);
+</SCRIPT>
+
+
+<%= high_chart("sample", @graph) %>

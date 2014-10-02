@@ -19,11 +19,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">GRasS<sup>devel</sup></a>
+	<%= link_to raw("GRasS<sup>devel</sup>"), root_path, :class => "navbar-brand" %>
+
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="<%= 'active' if current_page?(measurements_path) %> <%= 'active' if current_page?(root_path) %>"><%= link_to "Data" , measurements_path %></li>
+          <li class="<%= 'active' if current_page?(edit_management_path(1)) %>"><%= link_to "Settings" , edit_management_path(1) %></li> 
           <li class="<%= 'active' if current_page?(infos_path) %>"><%= link_to "Info" , infos_path %></li>          
         </ul>
       </div><!--/.nav-collapse -->
