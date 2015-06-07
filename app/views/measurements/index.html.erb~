@@ -1,8 +1,0 @@
-<h1>Measurement Datas</h1>
-<ul>
-<% @measurements.each do |m| %>
-<li><%= link_to m.id, measurement_path(m) %></li>
-<% end %>
-</ul>
-
-<%= link_to 'new measurement', new_measurement_path %>
