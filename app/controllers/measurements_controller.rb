@@ -12,13 +12,13 @@ class MeasurementsController < ApplicationController
     @records = @measurement.records
 
     if @records.any?
-      File.open("/home/pi/gomihiroi/grass/public/out.dat", "w") do |io|
+      File.open("public/out.dat", "w") do |io|
         @records.each do |r|
           io.print "#{r.x} #{r.y} -#{r.depth}\n" 
         end
       end
       # gnuplotでグラフ作成実行
-      `/home/pi/gomihiroi/grass/gplot.sh #{params[:id]}`
+      `gplot.sh #{params[:id]}`
     end
   end
 
